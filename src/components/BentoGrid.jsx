@@ -6,6 +6,7 @@ export function BentoGrid() {
   }
 
   const handleMouseLeave = () => {
+    if (window.innerWidth < 768) return
     bentoState.set(-1)
   }
 

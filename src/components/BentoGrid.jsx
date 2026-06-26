@@ -122,15 +122,22 @@ export function BentoGrid() {
         <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-deep-saffron/5 rounded-full blur-3xl pointer-events-none group-hover:bg-deep-saffron/10 transition-colors duration-300" />
         
         {/* SVG Graphic Background */}
-        <div className="absolute right-8 top-1/2 -translate-y-1/2 w-1/2 h-4/5 hidden sm:flex items-center justify-center opacity-35 group-hover:opacity-65 transition-opacity duration-300">
-          <div className="w-full text-left font-heading text-[10px] text-mystic-mint/80 bg-oceanic-noir/80 border border-arctic-powder/5 p-4 rounded-xl shadow-lg leading-relaxed select-text">
+        <div className="absolute right-8 top-1/2 -translate-y-1/2 w-1/2 h-4/5 hidden sm:flex items-center justify-center opacity-35 group-hover:opacity-65 transition-all duration-300">
+          <div className="w-full text-left font-heading text-[10px] text-mystic-mint/80 bg-oceanic-noir/90 border border-arctic-powder/10 p-4 rounded-xl shadow-xl leading-relaxed select-text relative overflow-hidden backdrop-blur-md">
+            {/* Terminal Window Controls */}
+            <div className="flex gap-1.5 mb-3 border-b border-arctic-powder/5 pb-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F] inline-block" />
+              <span className="text-[8px] text-arctic-powder/35 ml-2 font-mono">agent.js</span>
+            </div>
             <div><span className="text-deep-saffron">import</span> {"{ Agent }"} <span className="text-deep-saffron">from</span> <span className="text-forsythia">"@armory/sdk"</span>;</div>
-            <div className="mt-2"><span className="text-deep-saffron">const</span> agent = <span className="text-deep-saffron">new</span> <span className="text-white">Agent</span>({'{'}</div>
+            <div className="mt-1.5"><span className="text-deep-saffron">const</span> agent = <span className="text-deep-saffron">new</span> <span className="text-white">Agent</span>({'{'}</div>
             <div className="pl-4">id: <span className="text-forsythia">"secure-payment-watcher"</span>,</div>
             <div className="pl-4">trigger: <span className="text-forsythia">"on_transaction"</span>,</div>
             <div className="pl-4">isolation: <span className="text-forsythia">"thread-isolated"</span></div>
             <div>{'});'}</div>
-            <div className="mt-2">agent.<span className="text-white">deploy</span>();</div>
+            <div className="mt-1.5">agent.<span className="text-white">deploy</span>();</div>
           </div>
         </div>
 

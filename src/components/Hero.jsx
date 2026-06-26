@@ -44,13 +44,13 @@ export function Hero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up [animation-delay:150ms]">
           <button
             onClick={() => scrollToSection('features')}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-forsythia hover:bg-forsythia/90 text-oceanic-noir font-bold text-sm shadow-lg shadow-forsythia/15 transition-all duration-150"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-forsythia hover:bg-forsythia/90 text-oceanic-noir font-bold text-sm shadow-lg shadow-forsythia/15 hover:shadow-forsythia/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 ease-out cursor-pointer"
           >
             Build a Workflow
           </button>
           <button
             onClick={() => scrollToSection('pricing')}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-transparent border border-arctic-powder/20 hover:border-arctic-powder/40 hover:bg-arctic-powder/5 text-white font-semibold text-sm transition-all duration-150"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-transparent border border-arctic-powder/20 hover:border-arctic-powder/40 hover:bg-arctic-powder/5 text-white font-semibold text-sm hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 ease-out cursor-pointer"
           >
             Inspect Pricing
           </button>

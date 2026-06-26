@@ -35,14 +35,14 @@ export function Header() {
         {/* Action Controls */}
         <div className="flex items-center gap-4">
           {/* Search Button (uses search.svg) */}
-          <button className="p-2.5 rounded-full hover:bg-arctic-powder/5 text-arctic-powder/70 hover:text-white transition-colors duration-150 focus:outline-none">
+          <button className="p-2.5 rounded-full hover:bg-arctic-powder/5 text-arctic-powder/70 hover:text-white hover:scale-105 active:scale-95 transition-all duration-150 focus:outline-none cursor-pointer">
             <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
               <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33l-1.42 1.42l-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
             </svg>
           </button>
-
+ 
           {/* CTA */}
-          <button className="px-5 py-2 rounded-full bg-forsythia hover:bg-forsythia/90 text-oceanic-noir text-xs font-bold font-body transition-colors duration-150 shadow-md shadow-forsythia/10">
+          <button className="px-5 py-2 rounded-full bg-forsythia hover:bg-forsythia/90 text-oceanic-noir text-xs font-bold font-body hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 ease-out shadow-md shadow-forsythia/10 hover:shadow-forsythia/20 cursor-pointer">
             Launch Console
           </button>
         </div>

@@ -1,0 +1,120 @@
+import { useState, useEffect } from 'react'
+import { bentoState } from '../store/bentoState'
+
+const FEATURES = [
+  {
+    title: "Infinite Canvas",
+    description: "Design complex multi-agent workflows using an intuitive drag-and-drop compositor interface. Visually connect nodes, loops, and conditions with zero code.",
+    icon: (
+      <svg className="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+      </svg>
+    )
+  },
+  {
+    title: "Autonomous Execution",
+    description: "Self-healing loops automatically troubleshoot, retry, and adapt tasks in real-time based on live performance metrics.",
+    icon: (
+      <svg className="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93c.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204c.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78c-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107c-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93c-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204c-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78c.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107c.397-.165.71-.505.78-.929l.15-.894Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0Z" />
+      </svg>
+    )
+  },
+  {
+    title: "Secure Integrations",
+    description: "Performance-isolated tunnels secure credentials, data transit, and external APIs with zero-trust key management.",
+    icon: (
+      <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+        <path fillRule="evenodd" d="M19.902 4.098a3.75 3.75 0 0 0-5.304 0l-4.5 4.5a3.75 3.75 0 0 0 1.035 6.037a.75.75 0 0 1-.646 1.353a5.25 5.25 0 0 1-1.449-8.45l4.5-4.5a5.25 5.25 0 1 1 7.424 7.424l-1.757 1.757a.75.75 0 1 1-1.06-1.06l1.757-1.757a3.75 3.75 0 0 0 0-5.304Zm-7.389 4.267a.75.75 0 0 1 1-.353a5.25 5.25 0 0 1 1.449 8.45l-4.5 4.5a5.25 5.25 0 1 1-7.424-7.424l1.757-1.757a.75.75 0 1 1 1.06 1.06l-1.757 1.757a3.75 3.75 0 1 0 5.304 5.304l4.5-4.5a3.75 3.75 0 0 0-1.035-6.037a.75.75 0 0 1-.354-1Z" clipRule="evenodd" />
+      </svg>
+    )
+  },
+  {
+    title: "Production-Ready Stack",
+    description: "Deploy agents directly on the compositor thread with microsecond latency. Built-in hooks for popular APIs, databases, and LLM providers.",
+    icon: (
+      <svg className="w-5 h-5 fill-current" viewBox="0 0 16 16">
+        <path d="M8.372 1.349a.75.75 0 0 0-.744 0l-4.81 2.748L8 7.131l5.182-3.034zM14 5.357L8.75 8.43v6.005l4.872-2.784A.75.75 0 0 0 14 11zm-6.75 9.078V8.43L2 5.357V11c0 .27.144.518.378.651z" />
+      </svg>
+    )
+  }
+]
+
+export function Accordion() {
+  const [open, setOpen] = useState(() => {
+    // Read the already-set active index on first render to prevent any flicker
+    const index = bentoState.get()
+    // Default to first item if none was active
+    return index >= 0 ? index : 0
+  })
+
+  useEffect(() => {
+    // Sync if state changes while accordion is mounted (e.g. dynamic sizing)
+    return bentoState.subscribe(idx => {
+      if (idx >= 0) {
+        setOpen(idx)
+      }
+    })
+  }, [])
+
+  const toggle = (i) => {
+    const newOpen = open === i ? -1 : i
+    setOpen(newOpen)
+    bentoState.set(newOpen)
+  }
+
+  return (
+    <div className="flex flex-col gap-4 max-w-xl mx-auto text-left select-none">
+      {FEATURES.map((f, i) => {
+        const isOpen = open === i
+        return (
+          <div
+            key={i}
+            className={`border border-arctic-powder/10 rounded-2xl overflow-hidden transition-all duration-300 ${
+              isOpen
+                ? 'bg-nocturnal-expedition/30 border-mystic-mint/30 shadow-lg'
+                : 'bg-oceanic-noir/50 hover:border-arctic-powder/20'
+            }`}
+          >
+            <button
+              onClick={() => toggle(i)}
+              className="w-full px-6 py-5 flex items-center justify-between text-white font-heading font-semibold text-sm focus:outline-none"
+            >
+              <div className="flex items-center gap-3">
+                <span className={`${isOpen ? 'text-forsythia' : 'text-mystic-mint/60'}`}>
+                  {f.icon}
+                </span>
+                <span>{f.title}</span>
+              </div>
+              
+              {/* chevron-down.svg */}
+              <svg
+                className={`w-4 h-4 text-arctic-powder/50 transition-transform duration-200 ${isOpen ? 'rotate-180 text-forsythia' : ''}`}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+
+            {/* Accordion body with smooth native CSS height transitions */}
+            <div
+              className="transition-all duration-350 ease-in-out overflow-hidden"
+              style={{
+                maxHeight: isOpen ? '200px' : '0px',
+                opacity: isOpen ? 1 : 0
+              }}
+            >
+              <div className="px-6 pb-6 text-xs text-arctic-powder/70 leading-relaxed font-body">
+                {f.description}
+              </div>
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}

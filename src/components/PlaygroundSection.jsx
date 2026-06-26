@@ -58,7 +58,7 @@ export function PlaygroundSection() {
   }
 
   useEffect(() => {
-    if (consoleEndRef.current) {
+    if (logs.length > 0 && consoleEndRef.current) {
       consoleEndRef.current.scrollIntoView({ behavior: 'smooth' })
     }
   }, [logs])

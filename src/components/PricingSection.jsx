@@ -126,7 +126,12 @@ export function PricingSection() {
           {/* Enterprise Card */}
           <div className="glass-panel p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 animate-fade-up">
             <div>
-              <div className="text-mystic-mint text-xs font-bold uppercase tracking-wider mb-2 font-heading">Enterprise</div>
+              <div className="flex justify-between items-center mb-2">
+                <div className="text-mystic-mint text-xs font-bold uppercase tracking-wider font-heading">Enterprise</div>
+                <div className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-nocturnal-expedition border border-mystic-mint/10 text-[9px] text-mystic-mint font-heading font-semibold select-none">
+                  SOC2 TYPE II
+                </div>
+              </div>
               <div className="flex items-baseline gap-1 text-white mb-6">
                 <span className="text-4xl md:text-5xl font-heading font-bold">
                   <PriceNode tier="enterprise" />

@@ -28,3 +28,7 @@ Problem_Statement
 .agents
 .specify
 
+# Video recording artifacts
+record_walkthrough.cjs
+.screencast_frames
+

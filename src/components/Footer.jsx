@@ -75,9 +75,9 @@ export function Footer() {
       {/* Bottom Row: Back to Top */}
       <div className="max-w-6xl mx-auto border-t border-arctic-powder/5 mt-12 pt-8 flex items-center justify-between">
         <span className="text-[10px] text-arctic-powder/40 font-body">
-          Built for #hackthekitty 2026 &middot; Round 1
+          Built for #FrontEndBattle 2026 &middot; Round 1
         </span>
-        
+
         {/* Scroll to top button (uses chevron-up-solid.svg) */}
         <button
           onClick={scrollToTop}

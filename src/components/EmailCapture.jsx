@@ -63,7 +63,17 @@ export function EmailCapture() {
           </p>
 
           {status === 'success' ? (
-            <div className="animate-fade-in p-6 bg-mystic-mint/5 border border-mystic-mint/20 rounded-2xl max-w-md mx-auto flex flex-col items-center gap-3">
+            <div className="animate-fade-in p-6 bg-mystic-mint/5 border border-mystic-mint/20 rounded-2xl max-w-md mx-auto flex flex-col items-center gap-3 relative">
+              {/* Dismiss button using x-mark.svg */}
+              <button 
+                onClick={() => setStatus('idle')}
+                className="absolute top-3.5 right-3.5 p-1.5 rounded-lg text-arctic-powder/40 hover:text-white hover:bg-arctic-powder/5 transition-all duration-150 cursor-pointer"
+                aria-label="Dismiss success message"
+              >
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
               <div className="w-10 h-10 rounded-full bg-mystic-mint/10 text-mystic-mint flex items-center justify-center text-lg">
                 ✓
               </div>

@@ -418,7 +418,7 @@ FB_R1/
 
 ## 📝 License
 
-Built for **#hackthekitty 2026** — Phase 1 Round.
+Built for **#FrontEndBattle 2026** — Phase 1 Round.
 
 ---
 

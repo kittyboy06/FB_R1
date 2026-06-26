@@ -27,7 +27,7 @@ export function PricingSection() {
         </div>
 
         {/* Currency & Cycle Switcher Container */}
-        <div className="mb-16">
+        <div className="mb-16 relative z-20">
           <CurrencySwitcher />
         </div>
 
